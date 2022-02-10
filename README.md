@@ -1,6 +1,6 @@
 # level_up
 
-A new Flutter project.
+Level up coding skill by adding new features
 
 ## Getting Started
 
