@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:level_up/ui/inspireScreen.dart';
-import 'package:level_up/ui/movieScreen.dart';
-import 'package:level_up/ui/quizScreen.dart';
-import 'package:level_up/ui/tipsplit.dart';
-import 'ui/homeScreen.dart';
+import 'package:level_up/ui/movie/movieScreen.dart';
 
 // void main() {
 //   runApp(Home());

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:level_up/model/movieList.dart';
+import 'package:level_up/ui/movie/movie_details_screen.dart';
 
 class MovieListView extends StatelessWidget {
   final List<MovieListDetail> movieList = MovieListDetail.getMovies();
@@ -24,7 +25,7 @@ class MovieListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.deepPurpleAccent.withOpacity(0.9),
+        backgroundColor: Colors.deepPurpleAccent.shade700,
         appBar: AppBar(
           title: Text('Movies'),
           backgroundColor: Colors.deepPurple.shade700,
@@ -33,7 +34,13 @@ class MovieListView extends StatelessWidget {
             scrollDirection: Axis.vertical,
             itemCount: movieList.length,
             itemBuilder: (BuildContext context, int index) {
-              return movieCard(movieList[index], context);
+              return Stack(
+                children: [
+                  movieCard(movieList[index], context),
+                  Positioned(
+                      top: 15, child: movieImage(movieList[index].images[0])),
+                ],
+              );
               // return Card(
               //   color: Colors.white,
               //   elevation: 5.0,
@@ -73,33 +80,57 @@ class MovieListView extends StatelessWidget {
   Widget movieCard(MovieListDetail movie, BuildContext context) {
     return InkWell(
       child: Container(
-        margin: EdgeInsets.all(8.0),
+        margin: EdgeInsets.all(6.0),
         width: MediaQuery.of(context).size.width,
         height: 120.0,
         child: Card(
+          margin: EdgeInsets.only(left: 45.0),
           child: Padding(
             padding: const EdgeInsets.only(
-                left: 60.0, bottom: 8.0, top: 8.0, right: 10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(movie.title),
-                    Text('Rating ${movie.imdbRating} / 10'),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text("Released: ${movie.released}"),
-                    Text(movie.runtime),
-                    Text(movie.rated)
-                  ],
-                )
-              ],
+                left: 45.0, bottom: 8.0, top: 8.0, right: 10.0),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          movie.title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Rating ${movie.imdbRating} / 10',
+                        style: mainTextStyle(),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        "Released: ${movie.released}",
+                        style: mainTextStyle(),
+                      ),
+                      Text(
+                        movie.runtime,
+                        style: mainTextStyle(),
+                      ),
+                      Text(
+                        movie.rated,
+                        style: mainTextStyle(),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -109,40 +140,35 @@ class MovieListView extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) => MovieDetailView(
-                      movie: movie.title,
+                      movie: movie,
                     )));
       },
     );
   }
-}
 
-class MovieDetailView extends StatelessWidget {
-  const MovieDetailView({
-    Key? key,
-    required this.movie,
-  }) : super(key: key);
+  TextStyle mainTextStyle() {
+    return TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 12.5,
+      color: Color.fromARGB(255, 83, 79, 79),
+    );
+  }
 
-  final String movie;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Movies'),
-        backgroundColor: Colors.deepPurple.shade700,
-      ),
-      body: Container(
-        child: Center(
-          child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Go Back to $movie'),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.purpleAccent.shade700,
-              )),
-        ),
-      ),
+  Widget movieImage(String imageUrl) {
+    return Container(
+      height: 90,
+      width: 90,
+      decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            image: NetworkImage(
+              imageUrl ??
+                  'https://images-na.ssl-images-amazon.com/images/M/MV5BMTMxOTEwNDcxN15BMl5BanBnXkFtZTcwOTg0MTUzNA@@._V1_SX1777_CR0,0,1777,999_AL_.jpg',
+            ),
+            fit: BoxFit.cover,
+          )),
     );
   }
 }
+
+
