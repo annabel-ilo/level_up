@@ -26,6 +26,9 @@ class MovieDetailView extends StatelessWidget {
         children: [
           MovieDetailsThumbnail(thumbnail: movie.images[0]),
           MovieDetailsHeadWithPoster(movie: movie),
+          HorizontalLine(),
+          MovieDetailsCast(movie: movie),
+          HorizontalLine()
         ],
       ),
 
@@ -71,6 +74,7 @@ class MovieDetailsThumbnail extends StatelessWidget {
           Icon(
             Icons.play_circle_outline,
             size: 100,
+            color: Colors.white,
           )
         ]),
         Container(
@@ -187,6 +191,98 @@ class MovieDetailsHeader extends StatelessWidget {
                   )),
             ])),
       ],
+    );
+  }
+}
+
+class MovieDetailsCast extends StatelessWidget {
+  final MovieListDetail movie;
+
+  const MovieDetailsCast({
+    Key? key,
+    required this.movie,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          MovieField(
+            field: "Cast",
+            value: movie.actors,
+          ),
+          MovieField(
+            field: "Director",
+            value: movie.director,
+          ),
+          MovieField(
+            field: "Awards",
+            value: movie.awards,
+          ),
+          MovieField(
+            field: "Language",
+            value: movie.language,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MovieField extends StatelessWidget {
+  final String field;
+  final String value;
+  const MovieField({
+    Key? key,
+    required this.field,
+    required this.value,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "$field: ",
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w300,
+            color: Color.fromARGB(255, 31, 30, 30),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            value,
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              color: Color.fromARGB(248, 0, 0, 0),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class HorizontalLine extends StatelessWidget {
+  const HorizontalLine({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 12,
+      ),
+      child: Container(
+        height: 0.5,
+        color: Colors.grey,
+      ),
     );
   }
 }
