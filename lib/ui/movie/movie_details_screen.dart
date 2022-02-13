@@ -28,7 +28,8 @@ class MovieDetailView extends StatelessWidget {
           MovieDetailsHeadWithPoster(movie: movie),
           HorizontalLine(),
           MovieDetailsCast(movie: movie),
-          HorizontalLine()
+          HorizontalLine(),
+          MovieDetailsExtraPosters(posters: movie.images),
         ],
       ),
 
@@ -63,7 +64,7 @@ class MovieDetailsThumbnail extends StatelessWidget {
       children: [
         Stack(alignment: Alignment.center, children: [
           Container(
-              height: 300,
+              height: 200,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -283,6 +284,61 @@ class HorizontalLine extends StatelessWidget {
         height: 0.5,
         color: Colors.grey,
       ),
+    );
+  }
+}
+
+class MovieDetailsExtraPosters extends StatelessWidget {
+  final List<String> posters;
+  const MovieDetailsExtraPosters({
+    Key? key,
+    required this.posters,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Text("See More Posters".toUpperCase(),
+              style: TextStyle(
+                fontSize: 12,
+                color: Color.fromARGB(248, 0, 0, 0),
+              )),
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                height: 170,
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (context, index) => SizedBox(
+                    width: 8.0,
+                  ),
+                  itemCount: posters.length,
+                  itemBuilder: (context, index) => ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 4,
+                      height: 160,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                        image: NetworkImage(posters[index]),
+                        fit: BoxFit.cover,
+                      )),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        )
+      ],
     );
   }
 }
