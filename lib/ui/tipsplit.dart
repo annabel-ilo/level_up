@@ -72,12 +72,13 @@ class _TipSplitState extends State<TipSplit> {
                     keyboardType:
                         TextInputType.numberWithOptions(decimal: true),
                     decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.attach_money,
-                          color: Colors.grey[600],
-                        ),
-                        hintText: 'Total Bill',
-                        hintStyle: TextStyle(color: Colors.grey)),
+                      prefixIcon: Icon(
+                        Icons.attach_money,
+                        color: Colors.grey[600],
+                      ),
+                      hintText: 'Total Bill',
+                      // hintStyle: TextStyle(color: Colors.grey),
+                    ),
                     onChanged: (String value) {
                       try {
                         _billAmount = double.parse(value);

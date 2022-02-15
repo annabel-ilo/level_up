@@ -58,9 +58,9 @@ class _QuizzAppState extends State<QuizzApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue[700],
+      // backgroundColor: Colors.lightBlue[700],
       appBar: AppBar(
-        backgroundColor: Colors.black.withOpacity(0.6),
+        // backgroundColor: Colors.black.withOpacity(0.6),
         title: Center(
           child: Text(
             ' True Citizen',
@@ -93,7 +93,11 @@ class _QuizzAppState extends State<QuizzApp> {
                 child: Center(
                   child: Text(
                     questions[_currentIndex].questionText,
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontFamily: "ShadowsIntoLight"
+                    ),
                   ),
                 ),
               ),
@@ -152,7 +156,7 @@ class _QuizzAppState extends State<QuizzApp> {
     if (userSelect == questions[_currentIndex].iscorrect) {
       final snackbar = SnackBar(
         content: Text('CORRECT'),
-        backgroundColor: Colors.greenAccent[700],
+        // backgroundColor: Colors.greenAccent[700],
         elevation: 12.0,
         duration: Duration(milliseconds: 500),
       );
@@ -163,7 +167,7 @@ class _QuizzAppState extends State<QuizzApp> {
     } else {
       final snackbar = SnackBar(
         content: Text('INCORRECT'),
-        backgroundColor: Colors.red[700],
+        // backgroundColor: Colors.red[700],
         elevation: 12.0,
       );
       // ignore: deprecated_member_use
