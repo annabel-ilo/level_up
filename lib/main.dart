@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:level_up/ui/tipsplit.dart';
 import 'package:level_up/util/colors.dart';
+import 'json_parsing/json_parsing_map.dart';
+
 
 // void main() {
 //   runApp(Home());
@@ -28,9 +29,9 @@ ThemeData _buildAppTheme() {
 void main() {
   runApp(
     MaterialApp(
-      theme: _appTheme,
+      // theme: _appTheme,
       debugShowCheckedModeBanner: false,
-      home: TipSplit(),
+      home: JsonParsingMap(),
     ),
   );
 }
