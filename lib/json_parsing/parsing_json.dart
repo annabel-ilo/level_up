@@ -95,7 +95,7 @@ class Network {
     Response response = await get(Uri.parse(url));
 
     if (response.statusCode == 200) {
-      print(response.body);
+      
       return json.decode(response.body);
     } else {
       print(response.statusCode);
