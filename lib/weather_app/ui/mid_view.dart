@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:level_up/weather_app/model/weather_forecast_model.dart';
+import 'package:level_up/weather_app/utils/convert_icons.dart';
 import 'package:level_up/weather_app/utils/forecast_util.dart';
 
 Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
@@ -10,7 +11,7 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
   var formattedDate =
       new DateTime.fromMillisecondsSinceEpoch(forecastList!.dt * 1000);
 
-  Image icon_url;
+  // Image icon_url;
   Container midView = Container(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,14 +28,23 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
           "${Util.getFormattedDate(formattedDate)}",
           style: TextStyle(fontSize: 15),
         ),
-        SizedBox(height: 10),
-         icon_url = Image.network(
-          'http://openweathermap.org/img/w/${forecastList.weather[0].icon}.png',
-          color: Colors.pinkAccent,
-          height: 200,
-          width: 200,
-          fit: BoxFit.cover,
+        SizedBox(height: 8),
+
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: getWeatherIcon(
+            weatherDescription: forecastList.weather[0].main,
+            color: Colors.pinkAccent,
+            size: 200,
+          ),
         ),
+        //  icon_url = Image.network(
+        //   'http://openweathermap.org/img/w/${forecastList.weather[0].icon}.png',
+        //   color: Colors.pinkAccent,
+        //   height: 300,
+        //   width: 300,
+        //   fit: BoxFit.cover,
+        // ),
         // Icon(
         //   FontAwesomeIcons.cloud,
         //   size: 200,
@@ -96,7 +106,7 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("${forecastList.main.tempMax}° F"),
+                    Text("${forecastList.main.tempMax.toStringAsFixed(0)}° F"),
                     Icon(
                       FontAwesomeIcons.temperatureHigh,
                       size: 25,
@@ -108,7 +118,6 @@ Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
             ],
           ),
         ),
-       
       ],
     ),
   );

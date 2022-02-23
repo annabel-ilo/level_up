@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:level_up/ui/ui_extend/biz_card.dart';
 import 'package:level_up/ui/ui_extend/tap_btn.dart';
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 
 class Home extends StatelessWidget {
   _email() {

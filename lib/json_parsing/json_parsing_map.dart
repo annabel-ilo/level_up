@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:level_up/json_parsing/parsing_json.dart';
 import 'package:level_up/model/post.dart';
 import 'package:level_up/util/colors.dart';
 
@@ -28,7 +27,7 @@ class _JsonParsingMapState extends State<JsonParsingMap> {
     return Scaffold(
       appBar: AppBar(
           title: Text(
-        'PODO',
+        "PODO",
       )),
       body: Center(
           child: Container(
@@ -51,7 +50,7 @@ Widget createListView(List<Post> data, BuildContext context) {
   return Container(
     child: ListView.builder(
         itemCount: data.length,
-        itemBuilder: (contex, int index) {
+        itemBuilder: (context, int index) {
           var primaryPurpleLight;
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,

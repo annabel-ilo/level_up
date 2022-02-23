@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:level_up/util/colors.dart';
-import 'package:level_up/weather_app/weather_forecast.dart';
-import 'json_parsing/json_parsing_map.dart';
+import 'package:level_up/weather_app/ui/weather_forecast.dart';
 
 // void main() {
 //   runApp(Home());
