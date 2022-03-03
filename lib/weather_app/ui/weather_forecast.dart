@@ -60,13 +60,21 @@ class _WeatherForecastState extends State<WeatherForecast> {
     return Container(
         margin: EdgeInsets.all(10),
         child: TextField(
+          // enabled: false,
           decoration: InputDecoration(
-              hintText: "Enter City Name",
-              prefixIcon: Icon(Icons.search),
-              contentPadding: EdgeInsets.all(8),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-              )),
+            // filled: true,
+            // fillColor: Colors.pinkAccent,
+            hintText: "Enter City Name",
+            prefixIcon: Icon(Icons.search),
+            contentPadding: EdgeInsets.all(8),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: BorderSide(
+                width: 1,
+                color: Colors.pink,
+              ),
+            ),
+          ),
           onSubmitted: (value) {
             setState(() {
               _cityName = value;
