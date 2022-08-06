@@ -10,8 +10,10 @@ class Home extends StatelessWidget {
   _profile() {
     print('Update Profile');
   }
+ 
 
-  const Home({Key? key}) : super(key: key);
+  const Home({Key? key }) : super(key: key);
+   
 
   @override
   Widget build(BuildContext context) {

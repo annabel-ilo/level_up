@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:level_up/ui/tipsplit.dart';
 import 'package:level_up/util/colors.dart';
 import 'package:level_up/weather_app/ui/weather_forecast.dart';
 
@@ -30,7 +31,8 @@ void main() {
     MaterialApp(
       // theme: _appTheme,
       debugShowCheckedModeBanner: false,
-      home: WeatherForecast(),
+      home: TipSplit(),
+      //WeatherForecast(),
     ),
   );
 }
